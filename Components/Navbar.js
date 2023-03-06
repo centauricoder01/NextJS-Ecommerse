@@ -28,7 +28,7 @@ export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Box>
+    <Box marginBottom={"10px"} shadow="base">
       <Flex
         bg={useColorModeValue("blue.50", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
@@ -132,7 +132,7 @@ const DesktopNav = () => {
               <Link
                 p={2}
                 href={navItem.href ?? "#"}
-                fontSize={"sm"}
+                fontSize={"lg"}
                 fontWeight={500}
                 color={linkColor}
                 _hover={{
@@ -273,41 +273,41 @@ const MobileNavItem = ({ label, children, href }) => {
 
 const NAV_ITEMS = [
   {
-    label: "Inspiration",
+    label: "Shirts",
     children: [
       {
-        label: "Explore Design Work",
+        label: "T-Shirts",
         subLabel: "Trending Design to inspire you",
-        href: "#",
+        href: "/SmallPages/Tshirts",
       },
       {
-        label: "New & Noteworthy",
-        subLabel: "Up-and-coming Designers",
-        href: "#",
+        label: "Sweatshirts",
+        subLabel: "Gives you Bold and stylish look",
+        href: "/SmallPages/Sweatshirts",
       },
     ],
   },
   {
-    label: "Find Work",
+    label: "Hoodies",
     children: [
       {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
-        href: "#",
+        label: "Normal Hoodies",
+        subLabel: "Find your dream Design today",
+        href: "/SmallPages/Normalhoodies",
       },
       {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
-        href: "#",
+        label: "Zippper Hoodies",
+        subLabel: "An exclusive collection for you.",
+        href: "/SmallPages/Zipperhoodies",
       },
     ],
   },
   {
-    label: "Learn Design",
-    href: "#",
+    label: "Mugs",
+    href: "/SmallPages/Mugs",
   },
   {
-    label: "Hire Designers",
-    href: "#",
+    label: "Caps",
+    href: "/SmallPages/Caps",
   },
 ];

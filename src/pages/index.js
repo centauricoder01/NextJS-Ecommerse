@@ -1,9 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import Footer from "../../Components/Footer";
-import Navbar from "../../Components/Navbar";
 import styles from "../styles/Home.module.css";
-import { ReactElement } from "react";
 import { Box, SimpleGrid, Icon, Text, Stack, Flex } from "@chakra-ui/react";
 import { FcAssistant, FcDonate, FcInTransit } from "react-icons/fc";
 
@@ -43,7 +40,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar />
+
       <div className={styles.banners}>
         <div className={styles.partOne}>
           <Image
@@ -87,7 +84,7 @@ export default function Home() {
           />
         </div>
       </div>
-      {/* IMPORTANT INFO  */}
+
       <Box p={4}>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
           <Feature
@@ -113,8 +110,6 @@ export default function Home() {
           />
         </SimpleGrid>
       </Box>
-
-      <Footer />
     </>
   );
 }
