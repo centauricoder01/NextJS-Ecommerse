@@ -1,6 +1,8 @@
 import Head from "next/head";
+import Image from "next/image";
 import Footer from "../../Components/Footer";
 import Navbar from "../../Components/Navbar";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
@@ -12,6 +14,49 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
+      <div className={styles.banners}>
+        <div className={styles.partOne}>
+          <Image
+            src="/banner-1.webp"
+            alt="Picture of the author"
+            width={200}
+            height={100}
+          />
+          <Image
+            src="/banner-2_1.webp"
+            alt="Picture of the author"
+            width={200}
+            height={100}
+          />
+          <Image
+            src="/banner-2_2.webp"
+            alt="Picture of the author"
+            width={200}
+            height={100}
+          />
+        </div>
+        <div className="partTwo">
+          <Image
+            src="/banner-3_1.webp"
+            alt="Picture of the author"
+            width={200}
+            height={100}
+          />
+          <Image
+            src="/banner-3_2.webp"
+            alt="Picture of the author"
+            width={200}
+            height={100}
+          />
+
+          <Image
+            src="/banner-4.webp"
+            alt="Picture of the author"
+            width={200}
+            height={100}
+          />
+        </div>
+      </div>
       <Footer />
     </>
   );

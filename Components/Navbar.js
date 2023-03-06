@@ -7,7 +7,6 @@ import {
   Stack,
   Collapse,
   Icon,
-  Link,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -21,6 +20,9 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
+import Link from "next/link";
+import Image from "next/image";
+import { BsCart4 } from "react-icons/bs";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -53,13 +55,19 @@ export default function Navbar() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Text
+          <Link
+            href={"/"}
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
           >
-            Logo
-          </Text>
+            <Image
+              src="/logo2.png"
+              alt="Picture of the author"
+              width={200}
+              height={100}
+            />
+          </Link>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
@@ -74,12 +82,12 @@ export default function Navbar() {
         >
           <Button
             as={"a"}
-            fontSize={"sm"}
+            fontSize={"3xl"}
             fontWeight={400}
             variant={"link"}
             href={"#"}
           >
-            Sign In
+            <BsCart4 />
           </Button>
           <Button
             as={"a"}
@@ -87,10 +95,10 @@ export default function Navbar() {
             fontSize={"sm"}
             fontWeight={600}
             color={"white"}
-            bg={"pink.400"}
+            bg={"blue.400"}
             href={"#"}
             _hover={{
-              bg: "pink.300",
+              bg: "blue.300",
             }}
           >
             Sign Up
@@ -111,7 +119,12 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
   return (
-    <Stack direction={"row"} spacing={4}>
+    <Flex
+      direction={"row"}
+      gap={4}
+      alignItems={"center"}
+      justifyContent="center"
+    >
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
@@ -150,7 +163,7 @@ const DesktopNav = () => {
           </Popover>
         </Box>
       ))}
-    </Stack>
+    </Flex>
   );
 };
 
@@ -162,13 +175,13 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
       display={"block"}
       p={2}
       rounded={"md"}
-      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+      _hover={{ bg: useColorModeValue("blue.50", "gray.900") }}
     >
       <Stack direction={"row"} align={"center"}>
         <Box>
           <Text
             transition={"all .3s ease"}
-            _groupHover={{ color: "pink.400" }}
+            _groupHover={{ color: "blue.400" }}
             fontWeight={500}
           >
             {label}
@@ -184,7 +197,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
           align={"center"}
           flex={1}
         >
-          <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
+          <Icon color={"blue.400"} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
       </Stack>
     </Link>
