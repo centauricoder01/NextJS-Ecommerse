@@ -3,6 +3,36 @@ import Image from "next/image";
 import Footer from "../../Components/Footer";
 import Navbar from "../../Components/Navbar";
 import styles from "../styles/Home.module.css";
+import { ReactElement } from "react";
+import { Box, SimpleGrid, Icon, Text, Stack, Flex } from "@chakra-ui/react";
+import { FcAssistant, FcDonate, FcInTransit } from "react-icons/fc";
+
+const Feature = ({ title, text, icon }) => {
+  return (
+    <Stack
+      border={"1px solid"}
+      textAlign="center"
+      p={"10px"}
+      borderRadius="10px"
+    >
+      <Flex
+        w={16}
+        h={16}
+        align={"center"}
+        justify={"center"}
+        color={"white"}
+        rounded={"full"}
+        bg={"gray.100"}
+        mb={1}
+        margin={"auto"}
+      >
+        {icon}
+      </Flex>
+      <Text fontWeight={600}>{title}</Text>
+      <Text color={"gray.600"}>{text}</Text>
+    </Stack>
+  );
+};
 
 export default function Home() {
   return (
@@ -17,46 +47,73 @@ export default function Home() {
       <div className={styles.banners}>
         <div className={styles.partOne}>
           <Image
-            src="/banner-1.webp"
+            src="/1.png"
             alt="Picture of the author"
-            width={200}
-            height={100}
+            width={460}
+            height={150}
           />
           <Image
-            src="/banner-2_1.webp"
+            src="/11.png"
             alt="Picture of the author"
-            width={200}
-            height={100}
+            width={600}
+            height={150}
           />
           <Image
-            src="/banner-2_2.webp"
+            src="/3.png"
             alt="Picture of the author"
-            width={200}
-            height={100}
+            width={455}
+            height={150}
           />
         </div>
-        <div className="partTwo">
+        <div className={styles.partTwo}>
           <Image
-            src="/banner-3_1.webp"
+            src="/2.png"
             alt="Picture of the author"
-            width={200}
-            height={100}
+            width={455}
+            height={150}
           />
           <Image
-            src="/banner-3_2.webp"
+            src="/4.png"
             alt="Picture of the author"
-            width={200}
-            height={100}
+            width={460}
+            height={150}
           />
 
           <Image
-            src="/banner-4.webp"
+            src="/22.png"
             alt="Picture of the author"
-            width={200}
-            height={100}
+            width={600}
+            height={150}
           />
         </div>
       </div>
+      {/* IMPORTANT INFO  */}
+      <Box p={4}>
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
+          <Feature
+            icon={<Icon as={FcAssistant} w={10} h={10} />}
+            title={"Lifetime Support"}
+            text={
+              "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..."
+            }
+          />
+          <Feature
+            icon={<Icon as={FcDonate} w={10} h={10} />}
+            title={"Unlimited Donations"}
+            text={
+              "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..."
+            }
+          />
+          <Feature
+            icon={<Icon as={FcInTransit} w={10} h={10} />}
+            title={"Instant Delivery"}
+            text={
+              "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore..."
+            }
+          />
+        </SimpleGrid>
+      </Box>
+
       <Footer />
     </>
   );

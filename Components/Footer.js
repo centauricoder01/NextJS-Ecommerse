@@ -71,8 +71,8 @@ const ListHeader = ({ children }) => {
 export default function Footer() {
   return (
     <Box
-      bg={useColorModeValue("gray.50", "gray.900")}
-      color={useColorModeValue("gray.700", "gray.200")}
+      bg={useColorModeValue("blue.100", "blue.900")}
+      color={useColorModeValue("blue.700", "blue.200")}
     >
       <Container as={Stack} maxW={"6xl"} py={10}>
         <SimpleGrid
@@ -139,7 +139,7 @@ export default function Footer() {
               />
               <IconButton
                 bg={useColorModeValue("green.400", "green.800")}
-                color={useColorModeValue("white", "gray.800")}
+                color={useColorModeValue("white", "blue.800")}
                 _hover={{
                   bg: "green.600",
                 }}
