@@ -21,7 +21,7 @@ export default function Post() {
       <Stack
         borderWidth="1px"
         borderRadius="lg"
-        w={{ sm: "100%", md: "70%" }}
+        w={{ sm: "100%", md: "auto", lg: "80%" }}
         direction={{ base: "column", md: "row" }}
         bg={useColorModeValue("white", "gray.900")}
         boxShadow={"xl"}
@@ -29,8 +29,8 @@ export default function Post() {
       >
         <Flex flex={1} justifyContent="center">
           <Image
-            w={{ sm: "40%", md: "60%" }}
-            src={"https://m.media-amazon.com/images/I/71wYnCNtlYL._UY879_.jpg"}
+            w={{ sm: "60%", md: "auto" }}
+            src={"https://m.media-amazon.com/images/I/81ubrYy0GrL._UX569_.jpg"}
           />
         </Flex>
         <Stack flex={1} flexDirection="column" alignItems="left" p={1} pt={2}>
@@ -65,7 +65,7 @@ export default function Post() {
               ₹ 3444
             </Box>
           </Stack>
-          <Stack align={"left"} direction={"row"} mt={12}>
+          <Stack align={"left"} direction={"row"} mt={12} pb={2}>
             <Text>Color : </Text>
             <Flex gap={"10px"}>
               <Box
@@ -102,7 +102,7 @@ export default function Post() {
               ></Box>
             </Flex>
           </Stack>
-          <Stack align={"left"} direction={"row"} mt={"2rem"}>
+          <Stack align={"left"} direction={"row"} pb={2}>
             <Text>Size : </Text>
             <Flex gap={"10px"}>
               <Box
