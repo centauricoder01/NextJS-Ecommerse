@@ -5,17 +5,58 @@ import {
   Flex,
   Heading,
   Image,
-  Link,
   Stack,
   Text,
   Box,
   useColorModeValue,
+  Input,
+  useToast,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function Post() {
+  const [enterPin, setenterPin] = useState();
+  const toast = useToast();
+
   const router = useRouter();
   const { slug } = router.query;
+  const handlechange = (e) => {
+    setenterPin(e.target.value);
+  };
+
+  const checkPin = async () => {
+    await fetch("http://localhost:3000/api/Pincode")
+      .then((res) => res.json())
+      .then((res) => {
+        if (!enterPin || enterPin === null) {
+          toast({
+            title: `Please Enter Your Pincode`,
+            position: "top",
+            status: "error",
+            duration: 4000,
+          });
+        } else if (res.includes(Number(enterPin))) {
+          toast({
+            title: `hurry we deliver to your doorstep`,
+            position: "top",
+            status: "success",
+            duration: 4000,
+          });
+          setenterPin();
+        } else {
+          toast({
+            title: `delivery is not possible to your location`,
+            position: "top",
+            status: "info",
+            duration: 4000,
+          });
+          setenterPin();
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <Center py={6}>
       <Stack
@@ -102,6 +143,7 @@ export default function Post() {
               ></Box>
             </Flex>
           </Stack>
+
           <Stack align={"left"} direction={"row"} pb={2}>
             <Text>Size : </Text>
             <Flex gap={"10px"}>
@@ -157,7 +199,40 @@ export default function Post() {
               </Box>
             </Flex>
           </Stack>
-
+          <Text fontSize={"sm"} mt="3rem">
+            Enter pincode to check Delivery status{" "}
+          </Text>
+          <Flex
+            justifyContent={"left"}
+            gap="1rem"
+            w={{ sm: "60%", md: "50%", lg: "40%" }}
+            mb="3rem"
+          >
+            <Input
+              placeholder="Enter Pincode"
+              width={"60%"}
+              type="number"
+              value={enterPin}
+              onChange={handlechange}
+            />
+            <Button
+              width={"40%"}
+              bg={"blue.400"}
+              color={"white"}
+              boxShadow={
+                "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
+              }
+              _hover={{
+                bg: "blue.500",
+              }}
+              _focus={{
+                bg: "blue.500",
+              }}
+              onClick={checkPin}
+            >
+              Check
+            </Button>
+          </Flex>
           <Stack
             width={"100%"}
             mt={"2rem"}
@@ -171,7 +246,7 @@ export default function Post() {
               fontSize={"sm"}
               rounded={"full"}
               _focus={{
-                bg: "gray.200",
+                bg: "gray.300",
               }}
             >
               Add to Cart
@@ -180,16 +255,16 @@ export default function Post() {
               flex={1}
               fontSize={"sm"}
               rounded={"full"}
-              bg={"blue.400"}
+              bg={"orange.400"}
               color={"white"}
               boxShadow={
                 "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
               }
               _hover={{
-                bg: "blue.500",
+                bg: "orange.600",
               }}
               _focus={{
-                bg: "blue.500",
+                bg: "orange.600",
               }}
             >
               Buy Now

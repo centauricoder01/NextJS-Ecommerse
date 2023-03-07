@@ -23,8 +23,6 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { BsCart4 } from "react-icons/bs";
-import { AiFillCloseCircle } from "react-icons/ai";
-import { useRef } from "react";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -86,18 +84,16 @@ export default function Navbar() {
             justify={"flex-end"}
             direction={"row"}
             spacing={6}
+            alignItems={"center"}
           >
-            <Button
-              as={"a"}
-              fontSize={"3xl"}
-              fontWeight={400}
-              variant={"link"}
-              href={"#"}
-            >
-              <Link href={"/SmallPages/Cart"}>
-                <BsCart4 />
-              </Link>
-            </Button>
+            <Link href={"/SmallPages/Cart"}>
+              <BsCart4
+                style={{
+                  fontSize: "2rem",
+                  fontWeight: 400,
+                }}
+              />
+            </Link>
             <Button
               as={"a"}
               display={{ base: "none", md: "inline-flex" }}
@@ -114,8 +110,6 @@ export default function Navbar() {
             </Button>
           </Stack>
         </Flex>
-
-        {/* <<<<<<<<<<<<<<<     SIDE BAR FOR THE CART PAGE  >>>>>>>>>>>>>>>>>>>>>>>> */}
 
         <Collapse in={isOpen} animateOpacity>
           <MobileNav />
