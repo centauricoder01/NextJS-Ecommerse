@@ -14,8 +14,23 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../Redux/cartSlice";
 
 export default function Post() {
+  const dispatch = useDispatch();
+
+  const addToLocalCart = () => {
+    let obj = {
+      id: 1,
+      name: "rajendra",
+      class: 34,
+      size: "XL",
+      color: "Red",
+    };
+    dispatch(addToCart(obj));
+  };
+
   const [enterPin, setenterPin] = useState();
   const toast = useToast();
 
@@ -248,6 +263,7 @@ export default function Post() {
               _focus={{
                 bg: "gray.300",
               }}
+              onClick={addToLocalCart}
             >
               Add to Cart
             </Button>

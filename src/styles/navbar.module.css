@@ -1,0 +1,76 @@
+.donotshownavbar {
+  background: #c9e7f7;
+  position: fixed;
+  top: 0;
+  right: -50rem; /* Change the value of right to -200px to hide and to show change it to back 0 */
+  width: 25%;
+  height: 100vh;
+  padding: 50px;
+  z-index: 20000;
+  transition: right 1s;
+  overflow-y: scroll;
+}
+
+.shownavbar {
+  background: #c9e7f7;
+  position: fixed;
+  top: 0;
+  right: 0; /* Change the value of right to -200px to hide and to show change it to back 0 */
+  width: 25%;
+  height: 100vh;
+  padding: 50px;
+  z-index: 2000000;
+  transition: right 1s;
+  overflow-y: scroll;
+}
+
+@media only screen and (max-width: 1100px) {
+  .donotshownavbar {
+    width: 40%;
+  }
+
+  .shownavbar {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .donotshownavbar {
+    width: 50%;
+  }
+
+  .shownavbar {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .donotshownavbar {
+    width: 90%;
+  }
+
+  .shownavbar {
+    width: 90%;
+  }
+}
+
+.shownavbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.shownavbar::-webkit-scrollbar-track {
+  box-shadow: none;
+  border-radius: 10px;
+}
+
+/* Handle */
+.shownavbar::-webkit-scrollbar-thumb {
+  background: rgb(79, 188, 239);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.shownavbar::-webkit-scrollbar-thumb:hover {
+  background: rgb(18, 142, 200);
+}

@@ -23,9 +23,13 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { BsCart4 } from "react-icons/bs";
+import { ImCross } from "react-icons/im";
+import { useState } from "react";
+import styles from "../src/styles/navbar.module.css";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
+  const [classes, setclasses] = useState(styles.donotshownavbar);
 
   return (
     <>
@@ -86,14 +90,16 @@ export default function Navbar() {
             spacing={6}
             alignItems={"center"}
           >
-            <Link href={"/SmallPages/Cart"}>
-              <BsCart4
-                style={{
-                  fontSize: "2rem",
-                  fontWeight: 400,
-                }}
-              />
-            </Link>
+            <BsCart4
+              style={{
+                fontSize: "2rem",
+                fontWeight: 400,
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                setclasses(styles.shownavbar);
+              }}
+            />
             <Button
               as={"a"}
               display={{ base: "none", md: "inline-flex" }}
@@ -114,6 +120,23 @@ export default function Navbar() {
         <Collapse in={isOpen} animateOpacity>
           <MobileNav />
         </Collapse>
+      </Box>
+      <Box className={classes}>
+        <ImCross
+          style={{
+            position: "absolute",
+            top: "20px",
+            right: "20px",
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            setclasses(styles.donotshownavbar);
+          }}
+        />
+        <ul>
+          <li>Hello world </li>
+          <li>Hello world </li>
+        </ul>
       </Box>
     </>
   );
