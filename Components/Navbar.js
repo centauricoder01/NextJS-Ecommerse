@@ -33,7 +33,13 @@ export default function Navbar() {
 
   return (
     <>
-      <Box marginBottom={"10px"} shadow="base">
+      <Box
+        marginBottom={"10px"}
+        shadow="base"
+        position="sticky"
+        top={0}
+        zIndex="2000"
+      >
         <Flex
           bg={useColorModeValue("blue.50", "gray.800")}
           color={useColorModeValue("gray.600", "white")}
@@ -122,6 +128,9 @@ export default function Navbar() {
         </Collapse>
       </Box>
       <Box className={classes}>
+        <Text fontSize={"3xl"} fontWeight="bold" mb={"1rem"}>
+          Shooping Cart
+        </Text>
         <ImCross
           style={{
             position: "absolute",
@@ -134,9 +143,36 @@ export default function Navbar() {
           }}
         />
         <ul>
-          <li>Hello world </li>
-          <li>Hello world </li>
+          <li>
+            <span>Hello world</span>
+          </li>
         </ul>
+        <Box
+          display={"flex"}
+          gap="2rem"
+          justifyContent={"center"}
+          alignItems="center"
+          marginTop={"2rem"}
+        >
+          <Link href={"/SmallPages/Checkout"}>
+            <Button
+              backgroundColor={"green.200"}
+              _hover={{
+                bg: "green.300",
+              }}
+            >
+              Checkout
+            </Button>
+          </Link>
+          <Button
+            backgroundColor={"red.200"}
+            _hover={{
+              bg: "red.300",
+            }}
+          >
+            Clear
+          </Button>
+        </Box>
       </Box>
     </>
   );
