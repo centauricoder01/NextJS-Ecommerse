@@ -27,7 +27,13 @@ import { ImCross } from "react-icons/im";
 import { useState } from "react";
 import styles from "../src/styles/navbar.module.css";
 
-export default function Navbar() {
+export default function Navbar({
+  cart,
+  addToCart,
+  removeFromCart,
+  clearCart,
+  subtotal,
+}) {
   const { isOpen, onToggle } = useDisclosure();
   const [classes, setclasses] = useState(styles.donotshownavbar);
 
@@ -137,11 +143,41 @@ export default function Navbar() {
             setclasses(styles.donotshownavbar);
           }}
         />
-        <ul>
-          <li>
-            <span>Hello world</span>
-          </li>
-        </ul>
+        {Object.keys(cart).length === 0 && (
+          <Text fontWeight={"bold"}>No Item in the Cart</Text>
+        )}
+        <ol>
+          {Object.keys(cart).map((k) => (
+            <Flex
+              gap={"1rem"}
+              justifyContent="center"
+              alignItems={"center"}
+              border="1px solid"
+              key={k}
+            >
+              <Text fontSize={"1.5rem"} fontWeight="normal">
+                {cart[k].name}
+              </Text>
+              <Button
+                fontSize={"2rem"}
+                onClick={() => {
+                  removeFromCart("singletshirt");
+                }}
+              >
+                -
+              </Button>
+              <Text>{cart[k].qty}</Text>
+              <Button
+                fontSize={"2rem"}
+                onClick={() => {
+                  addToCart("singletshirt", 1, 1000, "Rajendra", "XL", "Blue");
+                }}
+              >
+                +
+              </Button>
+            </Flex>
+          ))}
+        </ol>
         <Box
           display={"flex"}
           gap="2rem"
@@ -164,6 +200,7 @@ export default function Navbar() {
             _hover={{
               bg: "red.300",
             }}
+            onClick={clearCart}
           >
             Clear
           </Button>

@@ -14,8 +14,8 @@ import { useEffect } from "react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 import { FiShoppingCart } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { cartProduct } from "../../../Redux/productSlice";
-import { addProduct } from "../../../Redux/productSlice";
+// import { cartProduct } from "../../../Redux/productSlice";
+// import { addProduct } from "../../../Redux/productSlice";
 
 const data = {
   isNew: true,
@@ -27,7 +27,7 @@ const data = {
 };
 
 function Caps() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // useEffect(() => {
   //   // dispatch(cartProduct());
