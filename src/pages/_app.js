@@ -3,7 +3,7 @@ import Footer from "../../Components/Footer";
 import Navbar from "../../Components/Navbar";
 import "@/styles/globals.css";
 import { Provider } from "react-redux";
-import { store } from "./store";
+import store from "./store";
 
 export default function App({ Component, pageProps }) {
   return (
