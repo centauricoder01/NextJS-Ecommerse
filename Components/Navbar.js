@@ -33,16 +33,10 @@ export default function Navbar() {
 
   return (
     <>
-      <Box
-        marginBottom={"10px"}
-        shadow="base"
-        position="sticky"
-        top={0}
-        zIndex="2000"
-      >
+      <Box shadow="base" position="sticky" top={0} zIndex="2000">
         <Flex
-          bg={useColorModeValue("blue.50", "gray.800")}
-          color={useColorModeValue("gray.600", "white")}
+          bg={useColorModeValue("#bee3f8", "#bee3f8")}
+          color={useColorModeValue("black.600", "white")}
           minH={"60px"}
           py={{ base: 2 }}
           px={{ base: 4 }}
@@ -106,20 +100,21 @@ export default function Navbar() {
                 setclasses(styles.shownavbar);
               }}
             />
-            <Button
-              as={"a"}
-              display={{ base: "none", md: "inline-flex" }}
-              fontSize={"sm"}
-              fontWeight={600}
-              color={"white"}
-              bg={"blue.400"}
-              href={"#"}
-              _hover={{
-                bg: "blue.300",
-              }}
-            >
-              Sign Up
-            </Button>
+            <Link href={"/SmallPages/Signup"}>
+              {/* <Button>Sign Up</Button> */}
+              <Button
+                display={{ base: "none", md: "inline-flex" }}
+                fontSize={"sm"}
+                fontWeight={600}
+                color={"white"}
+                bg={"blue.400"}
+                _hover={{
+                  bg: "blue.300",
+                }}
+              >
+                Sign Up
+              </Button>
+            </Link>
           </Stack>
         </Flex>
 

@@ -1,73 +1,79 @@
 import {
   Box,
   Button,
-  Checkbox,
   Flex,
-  FormControl,
   FormLabel,
   Heading,
   Input,
-  Link,
-  Stack,
   Text,
 } from "@chakra-ui/react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Login() {
   return (
     <Flex
-      backgroundColor={"blue.200"}
-      p="5rem"
+      backgroundColor={"#ebf8ff"}
       justifyContent={"center"}
       alignContent="center"
       gap={"10rem"}
-      boxShadow="dark-lg"
+      pt={"4rem"}
+      pb="4rem"
     >
-      <Image src="/login.png" alt={`Login Img`} width={500} height={100} />
       <Box
         backgroundColor={"white"}
-        width="30%"
+        width={{ sm: "70%", md: "50%", lg: "30%" }}
         borderRadius={"1rem"}
         padding="10px"
         display={"flex"}
         flexDir="column"
         justifyContent={"center"}
         alignContent="center"
+        boxShadow={"2xl"}
       >
         <Heading textAlign={"center"}>Login</Heading>
         <Flex
           border={"1px solid"}
           justifyContent="center"
-          m="1rem"
           borderRadius={"10rem"}
-          width="10%"
+          width="25%"
           margin={"auto"}
           mt="1rem"
           mb="1rem"
+          alignItems={"center"}
+          boxShadow=""
         >
           <Image
             src="/profile.png"
             alt={`profile Img`}
-            width={200}
-            height={100}
+            width={110}
+            height={90}
+            style={{ padding: "9px" }}
           />
         </Flex>
-        <FormLabel fontWeight={"normal"}>First name</FormLabel>
+        <FormLabel fontWeight={"normal"}>Email</FormLabel>
         <Input id="first-name" backgroundColor="blue.200" />
-        <FormLabel fontWeight={"normal"}>First name</FormLabel>
+        <FormLabel fontWeight={"normal"}>Password</FormLabel>
         <Input id="first-name" backgroundColor="blue.200" />
         <Button
           width={"100%"}
-          borderRadius="1rem"
+          borderRadius="11rem"
           backgroundColor={"blue.400"}
           color="white"
-          mt={"1rem"}
+          mt={"2rem"}
+          _hover={{
+            bg: "blue.500",
+          }}
         >
           Submit
         </Button>
         <Text textAlign={"center"} mt="10px">
           Forget Password?{" "}
-          <span style={{ color: "blue" }}>Get it on Email !</span>
+          <Link href={"/SmallPages/forgetPassword"}>
+            <span style={{ color: "blue", cursor: "pointer" }}>
+              Get it on Email !
+            </span>
+          </Link>
         </Text>
       </Box>
     </Flex>

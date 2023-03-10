@@ -10,7 +10,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Signup() {
+export default function ForgetPassword() {
   return (
     <Flex
       backgroundColor={"#ebf8ff"}
@@ -31,7 +31,7 @@ export default function Signup() {
         alignContent="center"
         boxShadow={"2xl"}
       >
-        <Heading textAlign={"center"}>SIGNUP</Heading>
+        <Heading textAlign={"center"}>Forget Password</Heading>
         <Flex
           border={"1px solid"}
           justifyContent="center"
@@ -51,14 +51,8 @@ export default function Signup() {
             style={{ padding: "9px" }}
           />
         </Flex>
-        <FormLabel fontWeight={"normal"}>Name</FormLabel>
-        <Input id="first-name" backgroundColor="blue.200" mb={"2"} />
-        <FormLabel fontWeight={"normal"}>Mobile no</FormLabel>
-        <Input id="first-name" backgroundColor="blue.200" mb={"2"} />
-        <FormLabel fontWeight={"normal"}>Email</FormLabel>
-        <Input id="first-name" backgroundColor="blue.200" mb={"2"} />
-        <FormLabel fontWeight={"normal"}>Password</FormLabel>
-        <Input id="first-name" backgroundColor="blue.200" mb={"2"} />
+        <FormLabel fontWeight={"normal"}>Enter Email</FormLabel>
+        <Input id="first-name" backgroundColor="blue.200" />
         <Button
           width={"100%"}
           borderRadius="11rem"
@@ -71,13 +65,6 @@ export default function Signup() {
         >
           Submit
         </Button>
-
-        <Text textAlign={"center"} mt="10px">
-          Already have account{" "}
-          <Link href={"/SmallPages/Login"}>
-            <span style={{ color: "blue", cursor: "pointer" }}>Login !</span>
-          </Link>
-        </Text>
       </Box>
     </Flex>
   );
