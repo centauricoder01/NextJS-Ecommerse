@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const connect = async (handler) => {
+const connect = (handler) => async (req, res) => {
   if (mongoose.connections[0].readyState) {
     return handler(req, res);
   }
@@ -8,4 +8,4 @@ const connect = async (handler) => {
   return handler(req, res);
 };
 
-module.exports = { connect };
+export { connect };

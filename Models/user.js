@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const UserSchema = new mongoose(
+const UserSchema = new mongoose.Schema(
   {
     name: { type: String, require: true },
     mobile: { type: Number, require: true, unique: true },
@@ -9,5 +9,5 @@ const UserSchema = new mongoose(
   },
   { timestamps: true }
 );
-
+mongoose.models = {};
 export default mongoose.model("User", UserSchema);
