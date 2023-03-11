@@ -11,7 +11,12 @@ export default function App({ Component, pageProps }) {
   const saveCart = (myCart) => {
     localStorage.setItem("cart", JSON.stringify(myCart));
     let total = 0;
-    console.log(myCart);
+    for (let i = 0; i < Object.keys(myCart).length; i++) {
+      total +=
+        myCart[Object.keys(myCart)[i]]["price"] *
+        myCart[Object.keys(myCart)[i]].qty;
+    }
+    setSubtotal(total);
   };
 
   const addToCart = (id, qty, price, name, size, varient) => {
@@ -28,13 +33,14 @@ export default function App({ Component, pageProps }) {
 
   const removeFromCart = (id, qty) => {
     let newCart = cart;
+
     if (id in cart) {
       newCart[id].qty = cart[id].qty - qty;
     }
-
     if (newCart[id]["qty"] <= 0) {
       delete newCart[id];
     }
+
     setCart(newCart);
     saveCart(newCart);
   };
@@ -43,6 +49,7 @@ export default function App({ Component, pageProps }) {
     try {
       if (localStorage.getItem("cart")) {
         setCart(JSON.parse(localStorage.getItem("cart")));
+        saveCart(JSON.parse(localStorage.getItem("cart")));
       }
     } catch (error) {
       console.log(error);

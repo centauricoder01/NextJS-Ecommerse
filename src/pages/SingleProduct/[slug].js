@@ -249,7 +249,7 @@ export default function Post({ addToCart }) {
                 bg: "gray.300",
               }}
               onClick={() => {
-                addToCart(slug, 1, 1000, "Rajendra", "XL", "Blue");
+                addToCart("twosonething", 1, 1000, "Rajendra", "XL", "Blue");
               }}
             >
               Add to Cart

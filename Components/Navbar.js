@@ -129,7 +129,7 @@ export default function Navbar({
         </Collapse>
       </Box>
       <Box className={classes}>
-        <Text fontSize={"3xl"} fontWeight="bold" mb={"1rem"}>
+        <Text fontSize={"3xl"} fontWeight="bold" mb={"1rem"} textAlign="left">
           Shooping Cart
         </Text>
         <ImCross
@@ -146,38 +146,50 @@ export default function Navbar({
         {Object.keys(cart).length === 0 && (
           <Text fontWeight={"bold"}>No Item in the Cart</Text>
         )}
-        <ol>
+        <ol style={{ textAlign: "center" }}>
           {Object.keys(cart).map((k) => (
-            <Flex
-              gap={"1rem"}
-              justifyContent="center"
-              alignItems={"center"}
-              border="1px solid"
-              key={k}
-            >
-              <Text fontSize={"1.5rem"} fontWeight="normal">
-                {cart[k].name}
-              </Text>
-              <Button
-                fontSize={"2rem"}
-                onClick={() => {
-                  removeFromCart("singletshirt");
-                }}
+            <li style={{ textAlign: "center" }}>
+              <Flex
+                gap={"1rem"}
+                justifyContent="left"
+                alignItems={"center"}
+                key={k}
+                mb="1rem"
               >
-                -
-              </Button>
-              <Text>{cart[k].qty}</Text>
-              <Button
-                fontSize={"2rem"}
-                onClick={() => {
-                  addToCart("singletshirt", 1, 1000, "Rajendra", "XL", "Blue");
-                }}
-              >
-                +
-              </Button>
-            </Flex>
+                <Text fontSize={"1rem"} fontWeight="normal">
+                  {cart[k].name}
+                </Text>
+                <Button
+                  fontSize={"1rem"}
+                  height="2rem"
+                  onClick={() => {
+                    removeFromCart("twosonething", 1);
+                  }}
+                >
+                  -
+                </Button>
+                <Text>{cart[k].qty}</Text>
+                <Button
+                  fontSize={"1rem"}
+                  height="2rem"
+                  onClick={() => {
+                    addToCart(
+                      "twosonething",
+                      1,
+                      1000,
+                      "Rajendra",
+                      "XL",
+                      "Blue"
+                    );
+                  }}
+                >
+                  +
+                </Button>
+              </Flex>
+            </li>
           ))}
         </ol>
+        <Text fontWeight={"bold"}>Subtotal : {subtotal}</Text>
         <Box
           display={"flex"}
           gap="2rem"

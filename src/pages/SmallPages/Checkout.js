@@ -5,11 +5,12 @@ import {
   FormLabel,
   Heading,
   Input,
+  Text,
   Textarea,
 } from "@chakra-ui/react";
 import React from "react";
 
-const Checkout = () => {
+const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subtotal }) => {
   return (
     <div>
       <Heading fontSize={"2rem"} textAlign="center">
@@ -87,7 +88,52 @@ const Checkout = () => {
         Preview Cart
       </Heading>
       <Box width={"80%"} margin="auto" textAlign={"center"} border="1px solid">
-        Here You will have your cart
+        {Object.keys(cart).length === 0 && (
+          <Text fontWeight={"bold"}>No Item in the Cart</Text>
+        )}
+        <ol style={{ textAlign: "center" }}>
+          {Object.keys(cart).map((k) => (
+            <li style={{ textAlign: "center" }}>
+              <Flex
+                gap={"1rem"}
+                justifyContent="left"
+                alignItems={"center"}
+                key={k}
+                mb="1rem"
+              >
+                <Text fontSize={"1rem"} fontWeight="normal">
+                  {cart[k].name}
+                </Text>
+                <Button
+                  fontSize={"1rem"}
+                  height="2rem"
+                  onClick={() => {
+                    removeFromCart("twosonething", 1);
+                  }}
+                >
+                  -
+                </Button>
+                <Text>{cart[k].qty}</Text>
+                <Button
+                  fontSize={"1rem"}
+                  height="2rem"
+                  onClick={() => {
+                    addToCart(
+                      "twosonething",
+                      1,
+                      1000,
+                      "Rajendra",
+                      "XL",
+                      "Blue"
+                    );
+                  }}
+                >
+                  +
+                </Button>
+              </Flex>
+            </li>
+          ))}
+        </ol>
       </Box>
       <Box
         display={"flex"}
@@ -97,7 +143,7 @@ const Checkout = () => {
         marginTop={"2rem"}
         mb="4rem"
       >
-        <Button>Pay ₹3400</Button>
+        <Button>Pay ₹{subtotal}</Button>
       </Box>
     </div>
   );
