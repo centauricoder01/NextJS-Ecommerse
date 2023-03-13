@@ -1,10 +1,15 @@
-import { productModel } from "../../../Models/product";
-import { connect } from "../../../Middleware/Mongoose";
+import productModel from "../../../Models/product";
+import connect from "../../../utils/Mongoose";
 
 async function handler(req, res) {
-  let products = await productModel.find();
-
-  res.status(200).json({ products });
+  await connect();
+  try {
+    const pro = await productModel.find();
+    res.json({ pro });
+  } catch (error) {
+    console.log(error);
+    res.json({ error });
+  }
 }
 
-export default connect(handler);
+export default handler;
