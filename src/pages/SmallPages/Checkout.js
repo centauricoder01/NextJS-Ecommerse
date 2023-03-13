@@ -93,7 +93,7 @@ const Checkout = ({ cart, addToCart, removeFromCart, clearCart, subtotal }) => {
         )}
         <ol style={{ textAlign: "center" }}>
           {Object.keys(cart).map((k) => (
-            <li style={{ textAlign: "center" }}>
+            <li style={{ textAlign: "center" }} key={Math.random()}>
               <Flex
                 gap={"1rem"}
                 justifyContent="left"

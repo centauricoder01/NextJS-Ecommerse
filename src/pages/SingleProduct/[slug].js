@@ -12,6 +12,7 @@ import {
   Input,
   useToast,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -57,6 +58,11 @@ export default function Post({ addToCart }) {
       .catch((err) => console.log(err));
   };
 
+  let value =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("single"))
+      : {};
+
   return (
     <Center py={6}>
       <Stack
@@ -69,26 +75,20 @@ export default function Post({ addToCart }) {
         padding={4}
       >
         <Flex flex={1} justifyContent="center">
-          <Image
-            w={{ sm: "60%", md: "auto" }}
-            src={"https://m.media-amazon.com/images/I/81ubrYy0GrL._UX569_.jpg"}
-          />
+          <Image w={{ sm: "60%", md: "auto" }} src={value.img} />
         </Flex>
         <Stack flex={1} flexDirection="column" alignItems="left" p={1} pt={2}>
           <Text fontWeight={600} color={"gray.500"} size="sm">
             @Circuit Shop
           </Text>
           <Heading fontSize={"2xl"} fontFamily={"body"}>
-            Amazon Brand - Symbol Men's Regular Fit T-Shirt
+            {value.title}
           </Heading>
           <Text
             textAlign={"left"}
             color={useColorModeValue("gray.700", "gray.400")}
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
-            iusto, harum, eligendi incidunt dicta debitis id impedit accusantium
-            pariatur optio fugiat earum vitae distinctio ipsam aperiam qui
-            blanditiis maiores veritatis?
+            {value.desc}
           </Text>
           <Stack>
             <Text fontWeight={"bolder"}>Product Highlights:</Text>
@@ -103,102 +103,10 @@ export default function Post({ addToCart }) {
           </Stack>
           <Stack align={"left"} direction={"row"} mt={6}>
             <Box as="span" color={"gray.600"} fontSize="2xl" mr={"4px"}>
-              ₹ 3444
+              ₹ {value.price}
             </Box>
           </Stack>
-          <Stack align={"left"} direction={"row"} mt={12} pb={2}>
-            <Text>Color : </Text>
-            <Flex gap={"10px"}>
-              <Box
-                border={"1px solid"}
-                borderRadius="2xl"
-                width={"1.5rem"}
-                height={"1.5rem"}
-                backgroundColor="red"
-                cursor={"pointer"}
-              ></Box>
-              <Box
-                border={"1px solid"}
-                borderRadius="2xl"
-                width={"1.5rem"}
-                height={"1.5rem"}
-                backgroundColor="blue"
-                cursor={"pointer"}
-              ></Box>
-              <Box
-                border={"1px solid"}
-                borderRadius="2xl"
-                width={"1.5rem"}
-                height={"1.5rem"}
-                backgroundColor="green"
-                cursor={"pointer"}
-              ></Box>
-              <Box
-                border={"1px solid"}
-                borderRadius="2xl"
-                width={"1.5rem"}
-                height={"1.5rem"}
-                backgroundColor="yellow"
-                cursor={"pointer"}
-              ></Box>
-            </Flex>
-          </Stack>
 
-          <Stack align={"left"} direction={"row"} pb={2}>
-            <Text>Size : </Text>
-            <Flex gap={"10px"}>
-              <Box
-                border={"1px solid"}
-                borderRadius="2px"
-                width={"2rem"}
-                height={"1.5rem"}
-                textAlign="center"
-                cursor={"pointer"}
-              >
-                S
-              </Box>
-              <Box
-                border={"1px solid"}
-                borderRadius="2px"
-                width={"2rem"}
-                height={"1.5rem"}
-                textAlign="center"
-                cursor={"pointer"}
-              >
-                M
-              </Box>
-              <Box
-                border={"1px solid"}
-                borderRadius="2px"
-                width={"2rem"}
-                height={"1.5rem"}
-                textAlign="center"
-                cursor={"pointer"}
-              >
-                L
-              </Box>
-              <Box
-                border={"1px solid"}
-                borderRadius="2px"
-                width={"2rem"}
-                height={"1.5rem"}
-                textAlign="center"
-                cursor={"pointer"}
-              >
-                XL
-              </Box>
-              <Box
-                border={"1px solid"}
-                borderRadius="2px"
-                width={"2rem"}
-                height={"1.5rem"}
-                textAlign="center"
-                cursor={"pointer"}
-              >
-                XXL
-              </Box>
-            </Flex>
-          </Stack>
           <Text fontSize={"sm"} mt="3rem">
             Enter pincode to check Delivery status{" "}
           </Text>
@@ -248,30 +156,43 @@ export default function Post({ addToCart }) {
               _focus={{
                 bg: "gray.300",
               }}
+              width="50%"
               onClick={() => {
-                addToCart("twosonething", 1, 1000, "Rajendra", "XL", "Blue");
+                addToCart(
+                  value._id,
+                  1,
+                  value.price,
+                  value.title,
+                  value.size,
+                  value.color
+                );
+                // id, qty, price, name, size, varient, img;
               }}
             >
               Add to Cart
             </Button>
-            <Button
-              flex={1}
-              fontSize={"sm"}
-              rounded={"full"}
-              bg={"orange.400"}
-              color={"white"}
-              boxShadow={
-                "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
-              }
-              _hover={{
-                bg: "orange.600",
-              }}
-              _focus={{
-                bg: "orange.600",
-              }}
-            >
-              Buy Now
-            </Button>
+            <Link href={"/SmallPages/Checkout"} style={{ width: "50%" }}>
+              <Button
+                flex={1}
+                fontSize={"sm"}
+                rounded={"full"}
+                bg={"orange.400"}
+                color={"white"}
+                boxShadow={
+                  "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
+                }
+                _hover={{
+                  bg: "orange.600",
+                }}
+                width="100%"
+                _focus={{
+                  bg: "orange.600",
+                }}
+                onClick={() => {}}
+              >
+                Buy Now
+              </Button>
+            </Link>
           </Stack>
         </Stack>
       </Stack>

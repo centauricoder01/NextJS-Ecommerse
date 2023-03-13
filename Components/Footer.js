@@ -35,31 +35,6 @@ const Logo = (props) => {
   );
 };
 
-const SocialButton = ({ children, label, href }) => {
-  return (
-    <chakra.button
-      bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
-      rounded={"full"}
-      w={8}
-      h={8}
-      cursor={"pointer"}
-      as={"a"}
-      href={href}
-      display={"inline-flex"}
-      alignItems={"center"}
-      justifyContent={"center"}
-      transition={"background 0.3s ease"}
-      _hover={{
-        bg: useColorModeValue("blackAlpha.200", "whiteAlpha.200"),
-      }}
-      target="_blank"
-    >
-      <VisuallyHidden>{label}</VisuallyHidden>
-      {children}
-    </chakra.button>
-  );
-};
-
 const ListHeader = ({ children }) => {
   return (
     <Text fontWeight={"500"} fontSize={"lg"} mb={2}>
@@ -69,6 +44,31 @@ const ListHeader = ({ children }) => {
 };
 
 export default function Footer() {
+  const SocialButton = ({ children, label, href }) => {
+    return (
+      <chakra.button
+        bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
+        rounded={"full"}
+        w={8}
+        h={8}
+        cursor={"pointer"}
+        as={"a"}
+        href={href}
+        display={"inline-flex"}
+        alignItems={"center"}
+        justifyContent={"center"}
+        transition={"background 0.3s ease"}
+        _hover={{
+          bg: useColorModeValue("blackAlpha.200", "whiteAlpha.200"),
+        }}
+        target="_blank"
+      >
+        <VisuallyHidden>{label}</VisuallyHidden>
+        {children}
+      </chakra.button>
+    );
+  };
+
   return (
     <Box
       bg={useColorModeValue("blue.100", "blue.900")}

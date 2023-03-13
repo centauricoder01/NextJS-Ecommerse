@@ -19,12 +19,12 @@ export default function App({ Component, pageProps }) {
     setSubtotal(total);
   };
 
-  const addToCart = (id, qty, price, name, size, varient) => {
+  const addToCart = (id, qty, price, name, size, varient, img) => {
     let newCart = cart;
     if (id in cart) {
       newCart[id].qty = cart[id].qty + qty;
     } else {
-      newCart[id] = { id, qty: 1, price, name, size, varient };
+      newCart[id] = { id, qty: 1, price, name, size, varient, img };
     }
 
     setCart(newCart);

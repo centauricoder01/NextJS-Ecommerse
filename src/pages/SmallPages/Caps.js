@@ -8,6 +8,7 @@ import {
   Icon,
   chakra,
   Tooltip,
+  Grid,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -29,18 +30,21 @@ const data = {
 function Caps({ Prodata }) {
   console.log(Prodata);
   return (
-    <Flex
+    <Grid
       p={50}
-      w="full"
-      alignItems="center"
-      justifyContent="center"
-      flexWrap={"wrap"}
+      w="100%"
       gap="1rem"
+      templateColumns={{
+        sm: "repeat(1, 1fr)",
+        md: "repeat(3, 1fr)",
+        lg: "repeat(4, 1fr)",
+      }}
+      margin={"auto"}
     >
       {Prodata?.map((ele) => (
         <Box
           bg={useColorModeValue("white", "gray.800")}
-          maxW="20%"
+          width="100%"
           borderWidth="1px"
           rounded="lg"
           shadow="lg"
@@ -49,16 +53,6 @@ function Caps({ Prodata }) {
           minH="25rem"
           maxH={"25rem"}
         >
-          {data.isNew && (
-            <Circle
-              size="10px"
-              position="absolute"
-              top={2}
-              right={2}
-              bg="red.200"
-            />
-          )}
-
           <Link href={"/SingleProduct/singletshirt"}>
             <Image
               src={ele.img}
@@ -67,6 +61,9 @@ function Caps({ Prodata }) {
               margin={"auto"}
               maxW="100%"
               maxH="15rem"
+              onClick={() => {
+                localStorage.setItem("single", JSON.stringify(ele));
+              }}
             />
           </Link>
 
@@ -109,7 +106,7 @@ function Caps({ Prodata }) {
           </Box>
         </Box>
       ))}
-    </Flex>
+    </Grid>
   );
 }
 
@@ -146,7 +143,7 @@ export default Caps;
 export async function getServerSideProps(context) {
   await connect();
   try {
-    const pro = await productModel.find();
+    const pro = await productModel.find({ category: "cap" });
     return {
       props: {
         Prodata: JSON.parse(JSON.stringify(pro)),
