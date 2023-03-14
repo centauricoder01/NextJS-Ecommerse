@@ -237,12 +237,7 @@ export default function Navbar({
             />
           </Flex>
           <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-            <Link
-              href={"/"}
-              textAlign={useBreakpointValue({ base: "center", md: "left" })}
-              fontFamily={"heading"}
-              color={useColorModeValue("gray.800", "white")}
-            >
+            <Link href={"/"}>
               <Image
                 src="/logo2.png"
                 alt="Picture of the author"
@@ -315,12 +310,11 @@ export default function Navbar({
         )}
         <ol style={{ textAlign: "center" }}>
           {Object.keys(cart).map((k) => (
-            <li style={{ textAlign: "center" }}>
+            <li style={{ textAlign: "center" }} key={k}>
               <Flex
                 gap={"1rem"}
                 justifyContent="left"
                 alignItems={"center"}
-                key={k}
                 mb="1rem"
               >
                 <Text fontSize={"1rem"} fontWeight="normal">

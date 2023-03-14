@@ -6,11 +6,28 @@ import {
   Heading,
   Input,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Login() {
+  const [signupdata, setSignupData] = useState({
+    email: "",
+    password: "",
+  });
+  const toast = useToast();
+
+  const HandleChange = (e) => {
+    setSignupData({ ...signupdata, [e.target.name]: e.target.value });
+  };
+
+  const HandleSubmit = (e) => {
+    e.preventDefault();
+    console.log(signupdata);
+  };
+
   return (
     <Flex
       backgroundColor={"#ebf8ff"}
@@ -31,50 +48,66 @@ export default function Login() {
         alignContent="center"
         boxShadow={"2xl"}
       >
-        <Heading textAlign={"center"}>Login</Heading>
-        <Flex
-          border={"1px solid"}
-          justifyContent="center"
-          borderRadius={"10rem"}
-          width="25%"
-          margin={"auto"}
-          mt="1rem"
-          mb="1rem"
-          alignItems={"center"}
-          boxShadow=""
-        >
-          <Image
-            src="/profile.png"
-            alt={`profile Img`}
-            width={110}
-            height={90}
-            style={{ padding: "9px" }}
+        <form>
+          <Heading textAlign={"center"}>Login</Heading>
+          <Flex
+            border={"1px solid"}
+            justifyContent="center"
+            borderRadius={"10rem"}
+            width="25%"
+            margin={"auto"}
+            mt="1rem"
+            mb="1rem"
+            alignItems={"center"}
+            boxShadow=""
+          >
+            <Image
+              src="/profile.png"
+              alt={`profile Img`}
+              width={110}
+              height={90}
+              style={{ padding: "9px" }}
+            />
+          </Flex>
+          <FormLabel fontWeight={"normal"}>Email</FormLabel>
+          <Input
+            backgroundColor="blue.200"
+            name="email"
+            type={"email"}
+            value={signupdata.email}
+            onChange={HandleChange}
           />
-        </Flex>
-        <FormLabel fontWeight={"normal"}>Email</FormLabel>
-        <Input id="first-name" backgroundColor="blue.200" />
-        <FormLabel fontWeight={"normal"}>Password</FormLabel>
-        <Input id="first-name" backgroundColor="blue.200" />
-        <Button
-          width={"100%"}
-          borderRadius="11rem"
-          backgroundColor={"blue.400"}
-          color="white"
-          mt={"2rem"}
-          _hover={{
-            bg: "blue.500",
-          }}
-        >
-          Submit
-        </Button>
-        <Text textAlign={"center"} mt="10px">
-          Forget Password?{" "}
-          <Link href={"/SmallPages/forgetPassword"}>
-            <span style={{ color: "blue", cursor: "pointer" }}>
-              Get it on Email !
-            </span>
-          </Link>
-        </Text>
+          <FormLabel fontWeight={"normal"}>Password</FormLabel>
+          <Input
+            backgroundColor="blue.200"
+            name="password"
+            type={"password"}
+            value={signupdata.password}
+            onChange={HandleChange}
+          />
+          <Button
+            width={"100%"}
+            borderRadius="11rem"
+            backgroundColor={"blue.400"}
+            color="white"
+            mt={"2rem"}
+            _hover={{
+              bg: "blue.500",
+            }}
+            type="submit"
+            onClick={HandleSubmit}
+          >
+            Submit
+          </Button>
+          <Text textAlign={"center"} mt="10px">
+            Forget Password?{" "}
+            <Link href={"/SmallPages/forgetPassword"}>
+              <span style={{ color: "blue", cursor: "pointer" }}>
+                Get it on Email !
+              </span>
+            </Link>
+          </Text>
+        </form>
       </Box>
     </Flex>
   );
