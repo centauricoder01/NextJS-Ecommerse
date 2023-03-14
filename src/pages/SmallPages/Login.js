@@ -11,8 +11,13 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import userModel from "../../../Models/user";
+import connect from "../../../utils/Mongoose";
+import { useRouter } from "next/router";
 
-export default function Login() {
+export default function Login({ Prodata, AddUserToLocal }) {
+  const router = useRouter();
+
   const [signupdata, setSignupData] = useState({
     email: "",
     password: "",
@@ -25,7 +30,28 @@ export default function Login() {
 
   const HandleSubmit = (e) => {
     e.preventDefault();
-    console.log(signupdata);
+    for (let i = 0; i < Prodata.length; i++) {
+      if (
+        Prodata[i].email == signupdata.email &&
+        Prodata[i].password == signupdata.password
+      ) {
+        toast({
+          title: `Welcome Back ${Prodata[i].name}`,
+          position: "top",
+          status: "success",
+          duration: 3000,
+        });
+        AddUserToLocal(Prodata[i]);
+        router.push("/");
+        return;
+      }
+    }
+    toast({
+      title: `Credential doesn't Match.`,
+      position: "top",
+      status: "error",
+      duration: 3000,
+    });
   };
 
   return (
@@ -101,14 +127,38 @@ export default function Login() {
           </Button>
           <Text textAlign={"center"} mt="10px">
             Forget Password?{" "}
-            <Link href={"/SmallPages/forgetPassword"}>
-              <span style={{ color: "blue", cursor: "pointer" }}>
-                Get it on Email !
-              </span>
-            </Link>
+            <span
+              style={{ color: "blue", cursor: "pointer" }}
+              onClick={() => {
+                toast({
+                  title: `Sorry, we are working on this feature.`,
+                  position: "top",
+                  status: "info",
+                  duration: 3000,
+                });
+              }}
+            >
+              Get it on Email !
+            </span>
           </Text>
         </form>
       </Box>
     </Flex>
   );
+}
+
+export async function getServerSideProps(context) {
+  await connect();
+  try {
+    const pro = await userModel.find();
+    return {
+      props: {
+        Prodata: JSON.parse(JSON.stringify(pro)),
+      },
+    };
+  } catch (error) {
+    return {
+      props: { error },
+    };
+  }
 }

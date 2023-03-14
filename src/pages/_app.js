@@ -19,6 +19,14 @@ export default function App({ Component, pageProps }) {
     setSubtotal(total);
   };
 
+  const AddUserToLocal = (data) => {
+    localStorage.setItem("UserData", JSON.stringify(data));
+  };
+
+  const removeUserToLocal = () => {
+    localStorage.setItem("UserData", null);
+  };
+
   const addToCart = (id, qty, price, name, size, varient, img) => {
     let newCart = cart;
     if (id in cart) {
@@ -70,6 +78,8 @@ export default function App({ Component, pageProps }) {
         removeFromCart={removeFromCart}
         clearCart={clearCart}
         subtotal={subtotal}
+        AddUserToLocal={AddUserToLocal}
+        removeUserToLocal={removeUserToLocal}
       />
       <Component
         cart={cart}
@@ -77,6 +87,8 @@ export default function App({ Component, pageProps }) {
         removeFromCart={removeFromCart}
         clearCart={clearCart}
         subtotal={subtotal}
+        AddUserToLocal={AddUserToLocal}
+        removeUserToLocal={removeUserToLocal}
         {...pageProps}
       />
       <Footer />

@@ -14,6 +14,7 @@ import {
   useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
+import { RxAvatar } from "react-icons/rx";
 import {
   HamburgerIcon,
   CloseIcon,
@@ -33,9 +34,15 @@ export default function Navbar({
   removeFromCart,
   clearCart,
   subtotal,
+  removeUserToLocal,
 }) {
   const { isOpen, onToggle } = useDisclosure();
   const [classes, setclasses] = useState(styles.donotshownavbar);
+  const [localdata, setlocaldata] = useState(
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("UserData"))
+      : {}
+  );
 
   const DesktopNav = () => {
     const linkColor = useColorModeValue("gray.600", "gray.200");
@@ -204,6 +211,8 @@ export default function Navbar({
       ? JSON.parse(localStorage.getItem("single"))
       : {};
 
+  console.log(localdata, "LOCALDATA");
+
   return (
     <>
       <Box shadow="base" position="sticky" top={0} zIndex="2000">
@@ -268,21 +277,39 @@ export default function Navbar({
                 setclasses(styles.shownavbar);
               }}
             />
-            <Link href={"/SmallPages/Signup"}>
-              {/* <Button>Sign Up</Button> */}
-              <Button
-                display={{ base: "none", md: "inline-flex" }}
-                fontSize={"sm"}
-                fontWeight={600}
-                color={"white"}
-                bg={"blue.400"}
-                _hover={{
-                  bg: "blue.300",
-                }}
+            {localdata !== null ? (
+              <Box
+                width="3rem"
+                borderRadius={"5rem"}
+                height={"3rem"}
+                textAlign="center"
+                fontSize="2.7rem"
+                display="flex"
               >
-                Sign Up
-              </Button>
-            </Link>
+                <RxAvatar
+                  style={{
+                    margin: "auto",
+                    backgroundColor: "white",
+                    borderRadius: "10rem",
+                  }}
+                />
+              </Box>
+            ) : (
+              <Link href={"/SmallPages/Signup"}>
+                <Button
+                  display={{ base: "none", md: "inline-flex" }}
+                  fontSize={"sm"}
+                  fontWeight={600}
+                  color={"white"}
+                  bg={"blue.400"}
+                  _hover={{
+                    bg: "blue.300",
+                  }}
+                >
+                  Sign Up
+                </Button>
+              </Link>
+            )}
           </Stack>
         </Flex>
 
